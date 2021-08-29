@@ -1,6 +1,5 @@
-# login-system-NBC
+# Model detection object violent yolov4 
 
-For this app I use python and flask, like database motor I use postgres. I integrate all app in a containers with docker.
 ## Add file weights model yolov4
 * Download the next link https://drive.google.com/file/d/1--i7ZBiikRYf7bJPahOvHGPS4FZEqFBK/view?usp=sharing
 * Copy this file into "config_files"
