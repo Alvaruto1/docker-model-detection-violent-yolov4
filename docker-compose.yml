@@ -1,0 +1,10 @@
+version: "3"
+services:
+  model-yolo-v4:
+    restart: always
+    container_name: model-yolo-v4
+    image: model-yolo-v4
+    build: .
+    command: python3 /model/yolov4/modelo_final_yolo_v4.py --path_image /model/yolov4/data/images/imagen_66.jpeg
+    volumes:
+      - ./modelo_final_yolo_v4.py:/model/yolov4/modelo_final_yolo_v4.py

@@ -1,0 +1,8 @@
+ipython==5.5.0
+ipython-genutils==0.2.0
+Pillow==7.1.2
+opencv-contrib-python==4.1.2.30
+opencv-python==4.1.2.30
+
+PyOpenGL==3.1.5
+cupy-cuda101==9.1.0
