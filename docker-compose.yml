@@ -2,9 +2,12 @@ version: "3"
 services:
   model-yolo-v4:
     restart: always
+    ports:
+      - "5000:5000"
     container_name: model-yolo-v4
     image: model-yolo-v4
     build: .
-    command: python3 /model/yolov4/modelo_final_yolo_v4.py --path_image /model/yolov4/data/images/imagen_66.jpeg
+    command: python3 /model/app.py
     volumes:
       - ./modelo_final_yolo_v4.py:/model/yolov4/modelo_final_yolo_v4.py
+      - ./app.py:/model/app.py

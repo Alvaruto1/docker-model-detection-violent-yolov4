@@ -9,6 +9,9 @@ import argparse
 import os
 import glob
 
+
+
+
 """
   detect_objects_in_image: function to detect objects in image
   args:
@@ -62,11 +65,11 @@ def how_many_objects_in_image(detections, class_names):
 
     return list_objects
 
-# loading network
-network, class_names, class_colors = load_network("/model/yolov4/cfg/yolov4-custom.cfg", "/model/yolov4/data/obj.data", "/model/yolov4/data/yolov4-custom_best.weights")
+
 
 
 # get args python command
+
 parser = argparse.ArgumentParser()
 parser.add_argument("--path_image", "-p", type=str, help="path image to detect violent objects")
 parser.add_argument("--path_dir", "-d", type=str, help="path dir in where are the images to detect violent objects")
@@ -75,6 +78,19 @@ args = parser.parse_args()
 path_image = args.path_image
 
 # use function detect_objects_in_image
-print(detect_objects_in_image(path_image, network, class_names, class_colors, thresh=.5, show=False))
+print(path_image,"------------------")
+if path_image != None:
+    network, class_names, class_colors = load_network("/model/yolov4/cfg/yolov4-custom.cfg",
+                                                      "/model/yolov4/data/obj.data",
+                                                      "/model/yolov4/data/yolov4-custom_best.weights")
+
+    print(detect_objects_in_image(path_image, network, class_names, class_colors, thresh=.5, show=False))
+else:
+    print("No arguments")
+
+
+
+
+
 
 
