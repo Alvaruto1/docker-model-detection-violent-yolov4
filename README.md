@@ -4,7 +4,7 @@
 ## Add file weights model yolov4
 * Download the next link https://drive.google.com/file/d/1--i7ZBiikRYf7bJPahOvHGPS4FZEqFBK/view?usp=sharing
 * Copy this file into "config_files"
-## Add image to detect
+## Add image to detect(optional: using script)
 Add image in folder "imagenes"
 ## Change docker-compose.yml (optional: using script)
     command: python3 /model/yolov4/modelo_final_yolo_v4.py --path_image /model/yolov4/data/images/{name_image_to_detect}.jpeg
