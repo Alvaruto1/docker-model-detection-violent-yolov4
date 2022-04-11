@@ -11,3 +11,4 @@ services:
     volumes:
       - ./modelo_final_yolo_v4.py:/model/yolov4/modelo_final_yolo_v4.py
       - ./app.py:/model/app.py
+      - ./detected_images:/model/detected_images

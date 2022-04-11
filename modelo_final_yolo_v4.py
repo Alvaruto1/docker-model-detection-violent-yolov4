@@ -20,7 +20,7 @@ import glob
 """
 
 
-def detect_objects_in_image(image_path, network, class_names, class_colors, thresh=.5, show=False):
+def detect_objects_in_image(image_path, network, class_names, class_colors, thresh=.5, show=True):
     width = network_width(network)
     height = network_height(network)
     darknet_image = make_image(width, height, 3)
@@ -37,13 +37,14 @@ def detect_objects_in_image(image_path, network, class_names, class_colors, thre
     detections = detect_image(network, class_names, darknet_image, thresh=thresh)
     free_image(darknet_image)
     image = draw_boxes(detections, image_resized, class_colors)
-
+    
     # original resize image
     image = cv2.resize(image, (original_width, original_height),
                        interpolation=cv2.INTER_LINEAR)
-
-    if show:
-        display(Image.fromarray(image))
+    
+    if show=="True":
+        name_image = os.path.basename(image_path)
+        Image.fromarray(image).save(f'/model/detected_images/detected_{name_image}')
 
     return get_info(image_path, detections, class_names)
 
@@ -54,7 +55,7 @@ def get_info(image_path, detections, class_names):
     detected_objects = [{'object': x[0], 'confidence': x[1], 'square_points': x[2]} for x in detections]
     list_objects = how_many_objects_in_image(detections, class_names)
 
-    return {'image_name': image_name, 'detected_objects': detected_objects, 'quantity_objects': list_objects}
+    return {'image_name': image_name, 'detected_objects': detected_objects, 'quantity_objects': list_objects, 'is_violent': is_violent(list_objects=list_objects)}
 
 # count quantity objects by class
 def how_many_objects_in_image(detections, class_names):
@@ -66,6 +67,14 @@ def how_many_objects_in_image(detections, class_names):
     return list_objects
 
 
+def is_violent(list_objects):
+    aux = True
+    for key_object in list_objects:
+        aux = aux and list_objects[key_object] == 0
+    
+    if list_objects["paloma paz"] >= 1 or list_objects["defensoria pueblo"]>=1 or aux:
+        return False
+    return True
 
 
 # get args python command

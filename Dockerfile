@@ -1,8 +1,6 @@
-FROM gmontamat/python-darknet:cpu
+FROM gmontamat/python-darknet:cpu AS darknet
 
-# install libraries python
-ADD requirements.txt /
-RUN pip install -r ./requirements.txt
+
 RUN apt-get update -y
 RUN apt-get upgrade -y
 RUN apt-get install git -y
@@ -27,5 +25,13 @@ ADD modelo_final_yolo_v4.py /model/yolov4/
 # test images
 ADD imagenes/* /model/yolov4/data/images/
 
+# install libraries python
+ADD requirements.txt /
+WORKDIR /
+RUN python3 -m pip install -r ./requirements.txt
 
 
+FROM gmontamat/python-darknet:cpu
+
+COPY --from=darknet /model /model
+#COPY --from=darknet /root/.local /root/.local

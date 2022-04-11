@@ -7,4 +7,7 @@ opencv-python==4.1.2.30
 PyOpenGL==3.1.5
 cupy-cuda101==9.1.0
 
-Flask==1.0.2
+Flask==2.0.3
+markupsafe==2.0.1
+itsdangerous==2.0.1
+flask-cors
