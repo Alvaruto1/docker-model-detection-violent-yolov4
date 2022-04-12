@@ -11,7 +11,7 @@ import time
 
 UPLOAD_FOLDER = '/model/yolov4/data/images'
 DETECTED_FOLDER = '/model/detected_images'
-ALLOWED_EXTENSIONS = {'jpeg'}
+ALLOWED_EXTENSIONS = {'jpeg', 'jpg'}
 
 network, class_names, class_colors = load_network("/model/yolov4/cfg/yolov4-custom.cfg", "/model/yolov4/data/obj.data", "/model/yolov4/data/yolov4-custom_best.weights")
 
@@ -53,7 +53,7 @@ def upload_file():
                 image.save(buffered, format="JPEG")
                 img_str = base64.b64encode(buffered.getvalue()).decode()
                 
-                resp = jsonify({'detection': dict_dectection, 'imageB64': img_str})
+                resp = jsonify({'status': True, 'detection': dict_dectection, 'imageB64': img_str})
             
             
             #file = send_from_directory(app.config["DETECTED_FOLDER"], f"detected_{filename}", as_attachment=True)
@@ -61,7 +61,7 @@ def upload_file():
             #response.set_cookie('result2', json.dumps(resp))
             return resp
         else:
-            return "bad file type"
+            return jsonify({'status': False, 'text': "bad file type"})
     else:
         return "no access"
 

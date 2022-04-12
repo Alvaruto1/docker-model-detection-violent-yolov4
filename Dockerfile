@@ -31,7 +31,7 @@ WORKDIR /
 RUN python3 -m pip install -r ./requirements.txt
 
 
-FROM gmontamat/python-darknet:cpu
+#FROM gmontamat/python-darknet:cpu
 
-COPY --from=darknet /model /model
+#COPY --from=darknet /model /model
 #COPY --from=darknet /root/.local /root/.local
