@@ -63,7 +63,7 @@ def upload_file():
         else:
             return jsonify({'status': False, 'text': "bad file type"})
     else:
-        return "no access"
+        return jsonify({'isLive': True, 'text': "is live"})
 
 
 if __name__ == "__main__":
