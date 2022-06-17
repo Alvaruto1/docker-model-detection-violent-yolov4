@@ -1,0 +1,7 @@
+FROM nginx
+
+COPY nginx.conf /etc/nginx/nginx.conf
+WORKDIR /etc/nginx/ssl
+COPY ssl_files/* /etc/nginx/ssl
+
+
