@@ -1,3 +1,4 @@
 *.weights
 venv
 /datasets yolo v3.rar
+.idea
